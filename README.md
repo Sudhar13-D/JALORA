@@ -127,3 +127,32 @@ $$\text{Score} = 100 \times (0.35 \times \text{Supply} + 0.25 \times \text{FlowP
 2. **Deterministic Seed:** PRNG is seeded with integer `26255` (JJM Problem Statement ID) for exact repeatability across test environments.
 3. **GPS Distance:** Household taps are assumed fixed; reports submitted from $>50\text{m}$ radius are downweighted from 1.0 to 0.3.
 4. **Water Quality Limits:** BIS IS 10500:2012 defaults (pH 6.5-8.5, Turbidity $\le 5$ NTU, TDS $\le 500$ ppm, Residual Chlorine 0.2-1.0 mg/L).
+
+---
+
+## 6. Hosting & Deployment on Render (Render.com)
+
+This application is ready for 1-click deployment on Render as a **Static Site** (Free tier):
+
+### Option A: Render Blueprint (Automatic)
+The repository contains a [`render.yaml`](render.yaml) file:
+1. Log in to [Render](https://render.com).
+2. Go to **Blueprints** &rarr; **New Blueprint Instance**.
+3. Select your repository `https://github.com/Sudhar13-D/JALORA.git`.
+4. Click **Apply** &mdash; Render will automatically detect the static site configuration, build with Vite, and deploy.
+
+### Option B: Manual Static Site Setup
+1. Log in to [Render](https://render.com) and click **New +** &rarr; **Static Site**.
+2. Connect your GitHub repository `Sudhar13-D/JALORA`.
+3. Configure the settings:
+   - **Name:** `jalora-dashboard` (or any preferred name)
+   - **Branch:** `main`
+   - **Build Command:** `npm install && npm run build`
+   - **Publish Directory:** `dist`
+4. Under **Redirects/Rewrites**:
+   - Add a rewrite rule:
+     - **Type:** `Rewrite`
+     - **Source:** `/*`
+     - **Destination:** `/index.html`
+5. Click **Create Static Site**.
+
